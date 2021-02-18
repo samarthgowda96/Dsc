@@ -1,36 +1,43 @@
-class binarytree:
-    #initialization or constructor
+class preorder:
     def __init__(self,data):
         self.left = None
         self.right = None
         self.data = data
 
-
-
+    
     def insert(self,data):
         if self.data:
             if data < self.data:
                 if self.left is None:
-                    self.left = binarytree(data)
+                    self.left=preorder(data)
                 else:
                     self.left.insert(data)
             elif data > self.data:
                 if self.right is None:
-                    self.right = binarytree(data)
+                    self.right=preorder(data)
                 else:
                     self.right.insert(data)
         else:
-            self.data = data
+            self.data
 
     def printtree(self):
         if self.left:
             self.left.printtree()
-        print(self.data),
+        print(self.data)
         if self.right:
             self.right.printtree()
-        
+
+    def preordertraversal(self,tree):
+        stack=[]
+        if tree:
+            stack.append(tree.data)
+            stack=stack+self.preordertraversal(tree.left)
+            stack=stack+self.preordertraversal(tree.right)
+        return stack
+
+
 if __name__=="__main__":
-    tree= binarytree(20)
+    tree= preorder(20)
     tree.insert(30)
     tree.insert(1)
     tree.insert(10)
@@ -38,10 +45,4 @@ if __name__=="__main__":
     tree.insert(4)
     tree.insert(51)
     tree.printtree()
-
-
-
-    
-    
-    
-
+    print(tree.preordertraversal(tree))
