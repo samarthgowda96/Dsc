@@ -1,20 +1,20 @@
-class preorder:
+class postorder:
     def __init__(self,data):
-        self.left = None
-        self.right = None
-        self.data = data
+        self.left=None
+        self.right=None
+        self.data= data
 
-    
     def insert(self,data):
         if self.data:
             if data < self.data:
                 if self.left is None:
-                    self.left=preorder(data)
+                    self.left =postorder(data)
                 else:
                     self.left.insert(data)
+
             elif data > self.data:
                 if self.right is None:
-                    self.right=preorder(data)
+                    self.right= postorder(data)
                 else:
                     self.right.insert(data)
         else:
@@ -27,17 +27,19 @@ class preorder:
         if self.right:
             self.right.printtree()
 
-    def preordertraversal(self,tree):
+    #postordercAlling resursively
+
+    def postordertraversal(self,tree):
         stack=[]
         if tree:
+            stack= stack+self.postordertraversal(tree.left)
             stack.append(tree.data)
-            stack=stack+self.preordertraversal(tree.left)
-            stack=stack+self.preordertraversal(tree.right)
-        return stack
+            stack=stack+self.postordertraversal(tree.right)
+        return stack         
 
 
 if __name__=="__main__":
-    tree= preorder(78)
+    tree= postorder(0.5)
     tree.insert(30)
     tree.insert(1)
     tree.insert(10)
@@ -45,4 +47,4 @@ if __name__=="__main__":
     tree.insert(4)
     tree.insert(51)
     tree.printtree()
-    print(tree.preordertraversal(tree))
+    print(tree.postordertraversal(tree))
