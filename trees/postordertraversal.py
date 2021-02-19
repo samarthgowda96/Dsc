@@ -34,13 +34,36 @@ class postorder:
             stack.append(tree.data)
         return stack
 
+    #number of nodes in the tree
+    def findsizeRecursive(self,tree):
+        if not tree:
+            return 0
+        return self.findsizeRecursive(tree.left)+ self.findsizeRecursive(tree.right)+1
+    #root not getting deleted
+    def deletetree(self,tree):
+        if (tree==None):
+            return
+            #print(self.data)
+        self.deletetree(tree.left)
+        self.deletetree(tree.right)
+        tree.left=None
+        tree.right=None
+        del tree
+        
 if __name__=="__main__":
-    tree= postorder(78)
+    tree= postorder(22)
     tree.insert(30)
     tree.insert(1)
     tree.insert(10)
     tree.insert(69)
     tree.insert(4)
     tree.insert(51)
-    tree.printtree()
+    tree.printtree() 
     print(tree.postordertraversal(tree))
+    print(tree.findsizeRecursive(tree))
+    print(tree.deletetree(tree))
+    print(tree.postordertraversal(tree)) 
+    print(tree.deletetree(tree))
+    print("sam") 
+
+    tree.printtree()

@@ -28,6 +28,15 @@ class binarytree:
         print(self.data),
         if self.right:
             self.right.printtree()
+
+    def deletetree(self,tree):
+        if tree:
+            self.deletetree(tree.left)
+            self.deletetree(tree.right)
+            tree.left=None
+            tree.right=None
+        else:
+            tree=None
         
 if __name__=="__main__":
     tree= binarytree(20)
@@ -38,6 +47,8 @@ if __name__=="__main__":
     tree.insert(4)
     tree.insert(51)
     tree.printtree()
+    #print(tree.deletetree(tree))
+   
 
 
 
