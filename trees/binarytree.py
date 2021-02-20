@@ -37,17 +37,32 @@ class binarytree:
             tree.right=None
         else:
             tree=None
+
+    #find max depth
+    def maxdepth(self,tree):
+        if tree==None:
+            return 0
+        return max(self.maxdepth(tree.left), self.maxdepth(tree.right))+1
         
 if __name__=="__main__":
     tree= binarytree(20)
-    tree.insert(30)
+    tree.insert(3)
     tree.insert(1)
-    tree.insert(10)
-    tree.insert(69)
+   
+    
     tree.insert(4)
-    tree.insert(51)
+    tree.insert(5)
+    """ tree.insert(30)
+    tree.insert(40)
+    tree.insert(50) """
+    tree.insert(60)
+    tree.insert(70)
+ 
+   
+
     tree.printtree()
     #print(tree.deletetree(tree))
+    print(tree.maxdepth(tree))
    
 
 
